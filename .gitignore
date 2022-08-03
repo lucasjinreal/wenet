@@ -32,7 +32,6 @@ __pycache__/
 .DS_Store
 
 exp
-data
 raw_wav
 tensorboard
 **/*build*
@@ -46,3 +45,6 @@ runtime/core/grpc/wenet.pb.h
 # Clangd files
 .cache
 compile_commands.json
+*.wav
+a.txt
+weights/
