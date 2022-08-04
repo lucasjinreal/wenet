@@ -27,3 +27,23 @@ python export_jit.py --checkpoint ./exp/20220506_u2pp_conformer_exp/final.pt --c
 
 注意，这里是trace不是script。
 
+## 导出到onnx
+
+其实可以简化版本，只需要Encoder，就可以实现推理。
+
+```
+python export_onnx_cpu.py --checkpoint ./exp/20220506_u2pp_conformer_exp/final.pt --config ./exp/20220506_u2pp_conformer_exp/train.yaml --chunk_size -1 --num_decoding_left_chunks -1 --output_dir weights
+```
+
+## 推理ONNX
+
+```
+python recognize_onnx.py --test_data data/data.txt --config ./exp/20220506_u2pp_conformer_exp/train.yaml --dict ./exp/20220506_u2pp_conformer_exp/units.txt --result_file a.txt --encoder_onnx weights/encoder.onnx --mode ctc_greedy_search
+```
+
+## 导出到WNNX
+
+```
+townnx -m encoder.pt -s 1x500x80,1 --moduleop wenet.transformer.attention.RelPositionMultiHeadedAttention,wenet.transformer.cmvn.GlobalCMVN
+```
+

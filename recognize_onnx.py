@@ -78,7 +78,7 @@ def get_args():
                         help='gpu id for this rank, -1 for cpu')
     parser.add_argument('--dict', required=True, help='dict file')
     parser.add_argument('--encoder_onnx', required=True, help='encoder onnx file')
-    parser.add_argument('--decoder_onnx', required=True, help='decoder onnx file')
+    parser.add_argument('--decoder_onnx', required=False, help='decoder onnx file')
     parser.add_argument('--result_file', required=True, help='asr result file')
     parser.add_argument('--batch_size',
                         type=int,
